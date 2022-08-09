@@ -10,4 +10,5 @@ Then run:
     yarn build
 ```
 
-## Deployed at: 
+## Deployed at:
+[https://canonical-quest-tochi.netlify.app/](https://canonical-quest-tochi.netlify.app/)
