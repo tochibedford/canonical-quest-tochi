@@ -39,14 +39,17 @@ const dataMounting = async (component, index) =>{
     const categoryElement = component.querySelector('[placeholder-id="category"]');
     categoryElement.innerHTML = newData[index]._embedded['wp:term'][2][0]? newData[index]._embedded['wp:term'][2][0].name : newData[index]._embedded['wp:term'][1][0].name;
 
+    const imageElement = component.querySelector('[placeholder-id="image"]');
+    imageElement.src = newData[index].featured_media;
+
+    const imageLinkElement = component.querySelector('[placeholder-id="image-link"]');
+    imageLinkElement.href = newData[index].link;
+
     const titleElement = component.querySelector('[placeholder-id="title"]');
     titleElement.innerHTML = newData[index].title.rendered;
 
     const titleLinkElement = component.querySelector('[placeholder-id="title-link"]');
     titleLinkElement.href = newData[index].link
-
-    const imageElement = component.querySelector('[placeholder-id="image"]');
-    imageElement.src = newData[index].featured_media;
 
     const authorElement = component.querySelector('[placeholder-id="author"]');
     authorElement.innerHTML = newData[index]._embedded.author[0].name;
