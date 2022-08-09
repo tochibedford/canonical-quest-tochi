@@ -5,8 +5,7 @@ let dataJSON = fetch('https://people.canonical.com/~anthonydillon/wp-json/wp/v2/
 const componentFinder = ()=>{
     // query all elements in the DOM
     const allComponents = document.getElementsByTagName("*");
-    let cardNumber = 0; 
-    Array.from(allComponents).forEach((componentContainer)=>{
+    Array.from(allComponents).forEach((componentContainer, index)=>{
         // iterate throgh each element and attempt to find the "include-component" attribute
         const componentDir = componentContainer.getAttribute("include-component");
         if(componentDir){
@@ -22,7 +21,7 @@ const componentFinder = ()=>{
                     componentContainer.innerHTML = componentBody.innerHTML;
 
                     // do somethings to the component
-                    dataMounting(componentContainer, cardNumber++);
+                    dataMounting(componentContainer);
 
                 })
                 .catch(res=>{
@@ -32,36 +31,35 @@ const componentFinder = ()=>{
     })
 }
 
-const dataMounting = async (component, index) =>{
+const dataMounting = async (component) =>{
     // this function mounts data gotten from the api to the DOM
     const newData = await dataJSON;
-
     const categoryElement = component.querySelector('[placeholder-id="category"]');
-    categoryElement.innerHTML = newData[index]._embedded['wp:term'][2][0]? newData[index]._embedded['wp:term'][2][0].name : newData[index]._embedded['wp:term'][1][0].name;
+    categoryElement.innerHTML = newData[component.id]._embedded['wp:term'][2][0]? newData[component.id]._embedded['wp:term'][2][0].name : newData[component.id]._embedded['wp:term'][1][0].name;
 
     const imageElement = component.querySelector('[placeholder-id="image"]');
-    imageElement.src = newData[index].featured_media;
+    imageElement.src = newData[component.id].featured_media;
 
     const imageLinkElement = component.querySelector('[placeholder-id="image-link"]');
-    imageLinkElement.href = newData[index].link;
+    imageLinkElement.href = newData[component.id].link;
 
     const titleElement = component.querySelector('[placeholder-id="title"]');
-    titleElement.innerHTML = newData[index].title.rendered;
+    titleElement.innerHTML = newData[component.id].title.rendered;
 
     const titleLinkElement = component.querySelector('[placeholder-id="title-link"]');
-    titleLinkElement.href = newData[index].link
+    titleLinkElement.href = newData[component.id].link
 
     const authorElement = component.querySelector('[placeholder-id="author"]');
-    authorElement.innerHTML = newData[index]._embedded.author[0].name;
-    authorElement.href = newData[index]._embedded.author[0].link;
+    authorElement.innerHTML = newData[component.id]._embedded.author[0].name;
+    authorElement.href = newData[component.id]._embedded.author[0].link;
 
     const dateElement = component.querySelector('[placeholder-id="date"]');
-    const date = new Date(newData[index].date);
+    const date = new Date(newData[component.id].date);
     const formattedDate = date.getDay()+ " " + date.toLocaleDateString('default', {month: 'long'})+ " " + date.getFullYear();
     dateElement.innerHTML = formattedDate;
 
     const postTypeElement = component.querySelector('[placeholder-id="post-type"]');
-    postTypeElement.innerHTML = newData[index]._embedded['wp:term'][0][0].name;
+    postTypeElement.innerHTML = newData[component.id]._embedded['wp:term'][0][0].name;
 }
 
 componentFinder();
