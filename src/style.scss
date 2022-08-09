@@ -8,18 +8,18 @@ $color-card-highlight: #A87CA0;
     margin-top: 1.5em;
 }
 
-.p-card__header{
-    border-bottom: none;
-    .p-heading--5{
-        text-transform: uppercase;
-    }
-}
-
 .p-card--highlighted{
     position: relative;
     box-shadow: 0 0 7px #0003;
     height: 100%;
     min-height: 100%;
+
+    .p-card__header{
+        border-bottom: none;
+        .p-heading--5{
+            text-transform: uppercase;
+        }
+    }
 
     hr{
         border-top: dotted 2px rgb(0,0,0,0.15);
@@ -28,7 +28,7 @@ $color-card-highlight: #A87CA0;
 
     .p-card__content{
         div{
-            margin: 20px 0px; 
+            margin: 40px 0px; 
             height: 100%;
         }
     }
