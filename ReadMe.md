@@ -7,11 +7,11 @@ To run this project:
 
 Then run:
 ```
-    yarn build
+    yarn start
 ```
 
 ## Deployed at:
-[https://canonical-quest-tochi.netlify.app/](https://canonical-quest-tochi.netlify.app/)'
+[https://canonical-quest-tochi.netlify.app/](https://canonical-quest-tochi.netlify.app/)
 
 ## Code Structure:
 
@@ -24,7 +24,7 @@ The cards are each taken as a single component and placed in a components folder
     ┗ 📜style.scss
 </pre>
 
-A component can be included into the html by adding an `include-component` tag as passing the component directory as it's value. e.g.
+A component can be included into the html by adding an `include-component` attribute and passing the component directory as it's value. e.g.
 ```
     <div id="0" include-component="./src/Components/shadowed-vanilla-card"></div> 
 ```
