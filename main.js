@@ -35,7 +35,6 @@ const componentFinder = ()=>{
 const dataMounting = async (component, index) =>{
     // this function mounts data gotten from the api to the DOM
     const newData = await dataJSON;
-    console.log(newData[index])
 
     const categoryElement = component.querySelector('[placeholder-id="category"]');
     categoryElement.innerHTML = newData[index]._embedded['wp:term'][2][0]? newData[index]._embedded['wp:term'][2][0].name : newData[index]._embedded['wp:term'][1][0].name;
