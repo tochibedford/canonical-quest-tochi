@@ -12,7 +12,7 @@ $color-card-highlight: #A87CA0;
     position: relative;
     box-shadow: 0 0 7px #0003;
     height: 100%;
-    min-height: 100%;
+    min-height: 530px;
 
     .p-card__header{
         border-bottom: none;
@@ -28,7 +28,7 @@ $color-card-highlight: #A87CA0;
 
     .p-card__content{
         div{
-            margin: 40px 0px; 
+            margin: 20px 0px; 
             height: 100%;
         }
     }
